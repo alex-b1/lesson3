@@ -9,7 +9,7 @@ class Route
 
   def add_station(station)
     if validate_station? station
-      puts "Ошибка, такая станция уже есть"
+      puts 'Ошибка, такая станция уже есть'
     else
       @stations.insert(-2, station)
     end
@@ -19,7 +19,7 @@ class Route
     if validate_station? station
       @stations.delete(station)
     else
-      puts "Ошибка, такой станции нет"
+      puts 'Ошибка, такой станции нет'
     end
   end
 

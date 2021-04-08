@@ -3,7 +3,7 @@ class Train
 
   def initialize(number, type, number_carriage)
     unless validate_type?(type) && validate_number?(number)
-      puts "Неверные данные"
+      puts 'Неверные данные'
       return
     end
 
@@ -25,7 +25,7 @@ class Train
     if !validate_spped?
       @number_carriage += count
     else
-      puts "Поезд движется"
+      puts 'Поезд движется'
       @number_carriage
     end
   end
@@ -34,7 +34,7 @@ class Train
     if !validate_spped?
       @number_carriage = @number_carriage < count ? 0 : @number_carriage - count
     else
-      puts "Поезд движется"
+      puts 'Поезд движется'
       @number_carriage
     end
   end
@@ -59,12 +59,12 @@ class Train
       index = @route.stations.index @station
       length = @route.stations.length
       if index == length
-        puts "вы на последней станции"
+        puts 'вы на последней станции'
       else
         @route.stations[index + 1]
       end
     else
-      puts "Маршрут не задан"
+      puts 'Маршрут не задан'
     end
   end
 
@@ -72,12 +72,12 @@ class Train
     if validate_route?
       index = @route.stations.index @station
       if index == 0
-        puts "Вы на первой станции"
+        puts 'Вы на первой станции'
       else
         @route.stations[index - 1]
       end
     else
-      puts "Маршрут не задан"
+      puts 'Маршрут не задан'
     end
   end
 

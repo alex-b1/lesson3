@@ -15,7 +15,7 @@ class Station
       @can_arrival = false
       @trains
     else
-      puts "Другой поезд прибыл на станцию, ожидайте разрешения"
+      puts 'Другой поезд прибыл на станцию, ожидайте разрешения'
     end
   end
 
@@ -30,10 +30,10 @@ class Station
         @trains.delete(train)
         @trains
       else
-        puts "Такого поезда нет"
+        puts 'Такого поезда нет'
       end
     else
-      puts "Другой поезд отправляется, ожидайте разрешения"
+      puts 'Другой поезд отправляется, ожидайте разрешения'
     end
   end
 
