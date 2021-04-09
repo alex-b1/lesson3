@@ -9,17 +9,22 @@ class Station
 
   def arrival_train(train)
     @trains << train
+    train.slow_down
+    train.slow_down
+    train.slow_down 100
   end
 
   def depart_train(train)
-    @trains.filter {|i| i.number != train.number}
+    @trains.filter! {|i| i.number != train.number}
+    train.next_station
+    train.accelerate
+    train.accelerate
   end
 
   def get_trains_by_type
-    list = {cargo: 0, passenger: 0}
-    @trains.each do |i|
-      list[i.type] = list[i.type] + 1
-    end
-    list
+   list = {
+        cargo: (@trains.filter {|i| i.type == :cargo}).count ,
+        passenger: (@trains.filter {|i| i.type == :passenger}).count,
+    }
   end
 end
