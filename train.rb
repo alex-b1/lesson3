@@ -2,11 +2,6 @@ class Train
   attr_reader :number_carriage, :number, :type, :speed, :station, :is_move, :route
 
   def initialize(number, type, number_carriage)
-    unless validate_type?(type) && validate_number?(number)
-      puts 'Неверные данные'
-      return
-    end
-
     @number = number
     @type = type
     @number_carriage = number_carriage
@@ -22,7 +17,7 @@ class Train
   end
 
   def attach_carriage(count = 1)
-    if !validate_spped?
+    if !validate_speed?
       @number_carriage += count
     else
       puts 'Поезд движется'
@@ -31,7 +26,7 @@ class Train
   end
 
   def detach_carriage(count = 1)
-    if !validate_spped?
+    if !validate_speed?
       @number_carriage = @number_carriage < count ? 0 : @number_carriage - count
     else
       puts 'Поезд движется'
@@ -47,56 +42,35 @@ class Train
   end
 
   def go_ahead
-    @station = get_next_station if get_next_station
+    @station = next_station if next_station
   end
 
   def go_back
     @station = get_previous_station if get_previous_station
   end
 
-  def get_next_station
-    if validate_route?
-      index = @route.stations.index @station
-      length = @route.stations.length
-      if index == length
-        puts 'вы на последней станции'
-      else
-        @route.stations[index + 1]
-      end
+  def next_station
+    index = @route.stations.index @station
+    length = @route.stations.length
+    if index == length
+      puts 'вы на последней станции'
     else
-      puts 'Маршрут не задан'
+      @route.stations[index + 1]
     end
   end
 
   def get_previous_station
-    if validate_route?
-      index = @route.stations.index @station
-      if index == 0
-        puts 'Вы на первой станции'
-      else
-        @route.stations[index - 1]
-      end
+    index = @route.stations.index @station
+    if index == 0
+      puts 'Вы на первой станции'
     else
-      puts 'Маршрут не задан'
+      @route.stations[index - 1]
     end
   end
 
   private
 
-  def validate_spped?
+  def validate_speed?
     @speed > 0
-  end
-
-  def validate_type?(type)
-    type_list = [:cargo, :passenger]
-    type_list.include?(type)
-  end
-
-  def validate_number?(number)
-    number.is_a? String
-  end
-
-  def validate_route?
-    @route != nil
   end
 end
